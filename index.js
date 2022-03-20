@@ -36,6 +36,11 @@ app.get("/products", async (req, res)=>{
     //res.send(`ALL products ${products}`)
 })
 
+app.get("/products/new", (req, res)=>{
+res.render("products/new")
+})
+
+
 app.get("/cat", (req, res)=>{
     res.send("Cat2")
 
