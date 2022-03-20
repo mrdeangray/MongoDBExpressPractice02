@@ -7,9 +7,9 @@ const methodOverride = require('method-override')
 app.use(methodOverride('_method'))
 
 
-//const Product = require('./models/product')
+const Product = require('./models/product')
 
-mongoose.connect('mongodb://127.0.0.1:27017/farmStand', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://127.0.0.1:27017/farm2', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => {
         console.log("MONGO CONNECTION OPEN!!!")
     })
@@ -30,6 +30,11 @@ app.listen(3000, ()=>{
     console.log("APP is listening on port 3000")
 })
 
+app.get("/products", async (req, res)=>{
+    const products = await Product.find({})
+    res.render("products/index", {products})
+    //res.send(`ALL products ${products}`)
+})
 
 app.get("/cat", (req, res)=>{
     res.send("Cat2")
